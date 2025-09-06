@@ -73,17 +73,16 @@ class Nordic_Books_Public {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/nordic-books-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name . '-style', plugin_dir_url( __FILE__ ) . 'css/nordic-books-public.css', array(), $this->version, 'all' );
 
-	}
+    }
 
 	/**
 	 * Register the JavaScript for the public-facing side of the site.
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_scripts() {
-
+	public function enqueue_scripts( $atts = [] ) {
 		/**
 		 * This function is provided for demonstration purposes only.
 		 *
@@ -96,7 +95,23 @@ class Nordic_Books_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/nordic-books-public.js', array( 'jquery' ), $this->version, false );
+		wp_register_script( $this->plugin_name . '-script', plugin_dir_url( __FILE__ ) . 'js/nordic-books-public.js', array( 'jquery' ), $this->version, true );
+
+        $localize = array(
+            'ajax_url' => admin_url( 'admin-ajax.php' ),
+            'nonce'    => wp_create_nonce( 'nordic_add_book_action' ),
+            'strings'  => array(
+                'saving'        => __( 'Saving...', 'nordic-books' ),
+                'saved'         => __( 'Book added successfully.', 'nordic-books' ),
+                'error'         => __( 'An error occurred. Please try again.', 'nordic-books' ),
+                'validation'    => __( 'Please fill all required fields correctly.', 'nordic-books' ),
+            ),
+            'primary_color'   => $atts['primary_color'],
+            'secondary_color' => $atts['secondary_color'],
+        );
+
+        wp_localize_script( 'nordic-books-script', 'NordicBooks', $localize );
+        wp_enqueue_script( $this->plugin_name . '-script' );
 
 	}
 

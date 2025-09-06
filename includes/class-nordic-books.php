@@ -122,6 +122,11 @@ class Nordic_Books {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-nordic-books-public.php';
 
+		/**
+		 * The class responsible for defining all shortcodes
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nordic-books-shortcodes.php';
+
 		$this->loader = new Nordic_Books_Loader();
 
 	}
@@ -168,11 +173,12 @@ class Nordic_Books {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Nordic_Books_Public( $this->get_plugin_name(), $this->get_version() );
+        $shortcodes = new Nordic_Books_Shortcodes( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+        $this->loader->add_shortcode( 'book_list', $shortcodes, 'render_book_list_shortcode' );
 
+        $this->loader->add_action( 'wp_ajax_nordic_add_book', $shortcodes, 'ajax_add_book' , 20 );
+        $this->loader->add_action( 'wp_ajax_nopriv_nordic_add_book', $shortcodes, 'ajax_add_book' , 20 );
 	}
 
 	/**

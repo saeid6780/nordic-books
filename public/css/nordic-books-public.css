@@ -1,4 +1,143 @@
-/**
- * All of the CSS for your public-facing functionality should be
- * included in this file.
- */
+/* Basic styles and modal */
+/*.nordic-books-wrapper {
+    margin: 1rem 0;
+    --nordic-primary: #0d6efd;
+    --nordic-secondary: #f8f9fa;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}*/
+
+.nordic-books-header {
+    margin-bottom: 0.6rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nordic-add-book-btn {
+    background: var(--nordic-primary);
+    color: #fff;
+    border: none;
+    padding: 0.45rem 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.nordic-books-table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.04);
+}
+
+.nordic-books-table thead {
+    background: linear-gradient(90deg, var(--nordic-primary), #0b5ed7);
+    color: #fff;
+}
+
+.nordic-books-table th, .nordic-books-table td {
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid #e9ecef;
+    text-align: left;
+}
+
+.nordic-books-table tbody tr:nth-child(odd) {
+    background: var(--nordic-secondary);
+}
+
+.nordic-empty-row td {
+    text-align: center;
+    padding: 1rem;
+    color: #6c757d;
+}
+
+/* Modal */
+.nordic-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.45);
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    max-width: 100% !important;
+    text-align: center;
+}
+
+.nordic-modal-content {
+    background: #fff;
+    max-width: 520px;
+    width: 100%;
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    position: relative;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    display: inline-block;
+}
+
+.nordic-modal-close {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: #333;
+}
+
+.nordic-field {
+    margin-bottom: 0.8rem;
+}
+
+.nordic-field label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+}
+
+.nordic-field input {
+    width: 100%;
+    padding: 0.45rem 0.6rem;
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.nordic-actions {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 0.6rem;
+}
+
+.nordic-submit-btn {
+    background: var(--nordic-primary);
+    color: #fff;
+    border: none;
+    padding: 0.5rem 0.8rem;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.nordic-cancel-btn {
+    background: transparent;
+    color: #333;
+    border: 1px solid #ddd;
+    padding: 0.45rem 0.7rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.nordic-form-message {
+    margin-top: 0.6rem;
+    min-height: 1.2em;
+}
+
+.nordic-form-message.error {
+    color: #b00020;
+}
+
+.nordic-form-message.success {
+    color: #0a8a00;
+}
