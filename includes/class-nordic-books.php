@@ -72,7 +72,7 @@ class Nordic_Books {
 		} else {
 			$this->version = '1.0.0';
 		}
-		$this->plugin_name = 'nordic-books';
+		$this->plugin_name = NORDIC_BOOK_SLUG;
 
 		$this->load_dependencies();
 		$this->set_locale();

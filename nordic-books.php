@@ -21,7 +21,7 @@
  * Author URI:        https://linkedin.com/in/saeid-sadigh-zadeh-8861688a/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       nordic-books
+ * Text Domain:       nordic-book
  * Domain Path:       /languages
  */
 
@@ -36,6 +36,9 @@ if ( ! defined( 'WPINC' ) ) {
  * Rename this for your plugin and update it as you release new versions.
  */
 define( 'NORDIC_BOOKS_VERSION', '1.0.0' );
+define( 'NORDIC_BOOK_SLUG', 'nordic-book' );
+define( 'NORDIC_BOOK_BASE', plugin_dir_path( __FILE__ ) );
+define( 'NORDIC_BOOK_TEMPLATE', NORDIC_BOOK_BASE . 'templates/' );
 
 /**
  * The code that runs during plugin activation.

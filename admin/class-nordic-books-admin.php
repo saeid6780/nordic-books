@@ -72,7 +72,7 @@ class Nordic_Books_Admin {
          * between the defined hooks and the functions defined in this
          * class.
          */
-        
+
     }
 
     /**
@@ -100,10 +100,10 @@ class Nordic_Books_Admin {
     {
         // Add Menu
         add_menu_page(
-            __( 'Books List', 'nordic-books' ),
-            __( 'Books List', 'nordic-books' ),
+            __( 'Books List', NORDIC_BOOK_SLUG ),
+            __( 'Books List', NORDIC_BOOK_SLUG ),
             'manage_options',
-            'nordic-books',
+            NORDIC_BOOK_SLUG,
             [
                 $this,
                 'nordic_books_list_content'
@@ -120,12 +120,12 @@ class Nordic_Books_Admin {
         $list_table->prepare_items();
         ?>
         <div class="wrap">
-            <h1 class="wp-heading-inline"><?php _e( 'Books', 'nordic-books' ) ?></h1>
+            <h1 class="wp-heading-inline"><?php _e( 'Books', NORDIC_BOOK_SLUG ) ?></h1>
             <hr class="wp-header-end">
             <?php $list_table->views(); ?>
             <form id="appointments-form" method="get">
                 <input type="hidden" name="page" value="<?php echo $_REQUEST[ 'page' ] ?>"/>
-                <?php $list_table->search_box( __( 'Search Books', 'nordic-books' ), 'search' ); ?>
+                <?php $list_table->search_box( __( 'Search Books', NORDIC_BOOK_SLUG ), 'search' ); ?>
                 <?php $list_table->display(); ?>
             </form>
         </div>

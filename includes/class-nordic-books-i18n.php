@@ -35,7 +35,7 @@ class Nordic_Books_i18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			'nordic-books',
+			NORDIC_BOOK_SLUG,
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);

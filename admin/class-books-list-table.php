@@ -24,10 +24,10 @@ class Nordic_Book_List_Table extends \WP_List_Table {
     public function get_columns() {
         return [
             'cb'                => '<input type="checkbox" />',
-            'id'                => __( 'ID', 'nordic-books' ),
-            'title'             => __( 'Title', 'nordic-books' ),
-            'author'            => __( 'Author', 'nordic-books' ),
-            'published_year'    => __( 'Published Year', 'nordic-books' ),
+            'id'                => __( 'ID', NORDIC_BOOK_SLUG ),
+            'title'             => __( 'Title', NORDIC_BOOK_SLUG ),
+            'author'            => __( 'Author', NORDIC_BOOK_SLUG ),
+            'published_year'    => __( 'Published Year', NORDIC_BOOK_SLUG ),
         ];
     }
 
@@ -48,7 +48,7 @@ class Nordic_Book_List_Table extends \WP_List_Table {
      */
     public function get_bulk_actions() {
         return [
-            'bulk_delete'   => __( 'Delete', 'nordic-books' ),
+            'bulk_delete'   => __( 'Delete', NORDIC_BOOK_SLUG ),
         ];
     }
 
@@ -94,10 +94,10 @@ class Nordic_Book_List_Table extends \WP_List_Table {
      * ID column with edit/delete links
      */
     public function column_id($item) {
-        $delete_link = wp_nonce_url(admin_url('admin.php?page=nordic-books&action=delete&id=' . $item->id), 'v_book_delete_book');
+        $delete_link = wp_nonce_url(admin_url('admin.php?page=nordic-book&action=delete&id=' . $item->id), 'v_book_delete_book');
 
         $actions = [
-            'delete' => "<a href='{$delete_link}'>" .  __( 'Delete', 'nordic-books' ) . "</a>"
+            'delete' => "<a href='{$delete_link}'>" .  __( 'Delete', NORDIC_BOOK_SLUG ) . "</a>"
         ];
 
         return sprintf('%1$s %2$s', $item->id, $this->row_actions($actions));
@@ -149,28 +149,4 @@ class Nordic_Book_List_Table extends \WP_List_Table {
         $this->process_bulk_action();
     }
 
-    /**
-     * Tabs
-     */
-    /*public function get_views() {
-        global $wpdb;
-        $counts = [
-            'all'      => $wpdb->get_var("SELECT COUNT(*) FROM $this->table"),
-            'pending'  => $wpdb->get_var("SELECT COUNT(*) FROM $this->table WHERE status='pending'"),
-            'active'   => $wpdb->get_var("SELECT COUNT(*) FROM $this->table WHERE status='active'"),
-            'expired'  => $wpdb->get_var("SELECT COUNT(*) FROM $this->table WHERE status='expired'"),
-            'inactive' => $wpdb->get_var("SELECT COUNT(*) FROM $this->table WHERE status='inactive'"),
-        ];
-
-        $views = [];
-        $current = isset($_GET['status_filter']) ? $_GET['status_filter'] : 'all';
-
-        foreach ($counts as $key => $count) {
-            $class = ($current === $key) ? 'current' : '';
-            $url = admin_url('admin.php?page=nordic-books&status_filter=' . $key);
-            $views[$key] = sprintf('<a href="%s" class="%s">%s <span class="count">(%d)</span></a>', $url, $class, ucfirst($key), $count);
-        }
-
-        return $views;
-    }*/
 }
