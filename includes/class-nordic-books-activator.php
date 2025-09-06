@@ -30,7 +30,24 @@ class Nordic_Books_Activator {
 	 * @since    1.0.0
 	 */
 	public static function activate() {
-
+        self::create_books_table();
 	}
 
+    public static function create_books_table()
+    {
+        global $wpdb;
+
+        require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+        $table_name      = $wpdb->prefix . "books";
+        $charset_collate = $wpdb->get_charset_collate();
+        $sql             = "CREATE TABLE IF NOT EXISTS $table_name (
+            id INT NOT NULL AUTO_INCREMENT,
+            title VARCHAR(255) NOT NULL,
+            author VARCHAR(255) NOT NULL,
+            published_year INT NOT NULL,
+            PRIMARY KEY  (id)
+        ) $charset_collate;";
+
+        dbDelta( $sql );
+    }
 }
